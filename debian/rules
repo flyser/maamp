@@ -1,0 +1,128 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+# Sample debian/rules that uses debhelper.
+# This file was originally written by Joey Hess and Craig Small.
+# As a special exception, when this file is copied by dh-make into a
+# dh-make output file, you may use that output file without restriction.
+# This special exception was added by Craig Small in version 0.37 of dh-make.
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+CFLAGS = -Wall -g
+
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+	CFLAGS += -O0
+else
+	CFLAGS += -O2
+endif
+
+configure: configure-stamp
+configure-stamp:
+	dh_testdir
+	# Add here commands to configure the package.
+
+	touch configure-stamp
+
+build: build-stamp
+
+build-stamp: configure-stamp
+	dh_testdir
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp configure-stamp
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+
+	# ======================================================
+	#$(MAKE) DESTDIR="$(CURDIR)/debian/maamp" install
+	mkdir -p "$(CURDIR)/debian/maamp"
+
+#	mkdir -p "$(CURDIR)/debian/maamp//opt/usr/share/icons/hicolor/scalable/apps/"
+	cp -a "src/opt/usr/share/icons/hicolor/scalable/apps/maamp.png" "$(CURDIR)/debian/maamp//opt/usr/share/icons/hicolor/scalable/apps/maamp.png"
+	mkdir -p "$(CURDIR)/debian/maamp//opt/MaAmp/ui/"
+	cp -a "src/opt/MaAmp/ui/__init__.py" "$(CURDIR)/debian/maamp//opt/MaAmp/ui/__init__.py"
+	mkdir -p "$(CURDIR)/debian/maamp//opt/MaAmp/ui/"
+	cp -a "src/opt/MaAmp/ui/about.py" "$(CURDIR)/debian/maamp//opt/MaAmp/ui/about.py"
+	mkdir -p "$(CURDIR)/debian/maamp//opt/MaAmp/ui/"
+	cp -a "src/opt/MaAmp/ui/about.ui" "$(CURDIR)/debian/maamp//opt/MaAmp/ui/about.ui"
+	mkdir -p "$(CURDIR)/debian/maamp//opt/MaAmp/ui/"
+	cp -a "src/opt/MaAmp/ui/configure.py" "$(CURDIR)/debian/maamp//opt/MaAmp/ui/configure.py"
+	mkdir -p "$(CURDIR)/debian/maamp//opt/MaAmp/ui/"
+	cp -a "src/opt/MaAmp/ui/configure.ui" "$(CURDIR)/debian/maamp//opt/MaAmp/ui/configure.ui"
+	mkdir -p "$(CURDIR)/debian/maamp//opt/MaAmp/ui/"
+	cp -a "src/opt/MaAmp/ui/extended_gui.py" "$(CURDIR)/debian/maamp//opt/MaAmp/ui/extended_gui.py"
+	mkdir -p "$(CURDIR)/debian/maamp//opt/MaAmp/ui/"
+	cp -a "src/opt/MaAmp/ui/listwindow.py" "$(CURDIR)/debian/maamp//opt/MaAmp/ui/listwindow.py"
+	mkdir -p "$(CURDIR)/debian/maamp//opt/MaAmp/ui/"
+	cp -a "src/opt/MaAmp/ui/listwindow.ui" "$(CURDIR)/debian/maamp//opt/MaAmp/ui/listwindow.ui"
+	mkdir -p "$(CURDIR)/debian/maamp//opt/MaAmp/ui/"
+	cp -a "src/opt/MaAmp/ui/mainwindow.py" "$(CURDIR)/debian/maamp//opt/MaAmp/ui/mainwindow.py"
+	mkdir -p "$(CURDIR)/debian/maamp//opt/MaAmp/ui/"
+	cp -a "src/opt/MaAmp/ui/mainwindow.ui" "$(CURDIR)/debian/maamp//opt/MaAmp/ui/mainwindow.ui"
+	mkdir -p "$(CURDIR)/debian/maamp//opt/usr/share/icons/hicolor/48x48/apps/"
+	cp -a "src/opt/usr/share/icons/hicolor/48x48/apps/maamp.png" "$(CURDIR)/debian/maamp//opt/usr/share/icons/hicolor/48x48/apps/maamp.png"
+	mkdir -p "$(CURDIR)/debian/maamp//usr/share/applications/hildon/"
+	cp -a "src/usr/share/applications/hildon/MaAmp.desktop" "$(CURDIR)/debian/maamp//usr/share/applications/hildon/MaAmp.desktop"
+	mkdir -p "$(CURDIR)/debian/maamp//opt/MaAmp/lib/"
+	cp -a "src/opt/MaAmp/lib/__init__.py" "$(CURDIR)/debian/maamp//opt/MaAmp/lib/__init__.py"
+	mkdir -p "$(CURDIR)/debian/maamp//opt/MaAmp/lib/"
+	cp -a "src/opt/MaAmp/lib/ampache.py" "$(CURDIR)/debian/maamp//opt/MaAmp/lib/ampache.py"
+	mkdir -p "$(CURDIR)/debian/maamp//opt/MaAmp/"
+	cp -a "src/opt/MaAmp/empty.png" "$(CURDIR)/debian/maamp//opt/MaAmp/empty.png"
+	mkdir -p "$(CURDIR)/debian/maamp//opt/MaAmp/"
+	cp -a "src/opt/MaAmp/gui.py" "$(CURDIR)/debian/maamp//opt/MaAmp/gui.py"
+	mkdir -p "$(CURDIR)/debian/maamp//opt/MaAmp/"
+	cp -a "src/opt/MaAmp/maamp.png" "$(CURDIR)/debian/maamp//opt/MaAmp/maamp.png"
+	mkdir -p "$(CURDIR)/debian/maamp//opt/MaAmp/"
+	cp -a "src/opt/MaAmp/maamp.py" "$(CURDIR)/debian/maamp//opt/MaAmp/maamp.py"
+	mkdir -p "$(CURDIR)/debian/maamp//opt/MaAmp/"
+	cp -a "src/opt/MaAmp/readme.txt" "$(CURDIR)/debian/maamp//opt/MaAmp/readme.txt"
+
+	# ======================================================
+
+# Build architecture-independent files here.
+binary-indep: build install
+# We have nothing to do by default.
+
+# Build architecture-dependent files here.
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs debian/changelog
+	dh_installdocs
+	dh_installexamples
+#	dh_install
+#	dh_installmenu
+#	dh_installdebconf
+#	dh_installlogrotate
+#	dh_installemacsen
+#	dh_installpam
+#	dh_installmime
+#	dh_python
+#	dh_installinit
+#	dh_installcron
+#	dh_installinfo
+	dh_installman
+	dh_link
+	dh_strip
+	dh_compress
+	dh_fixperms
+#	dh_perl
+#	dh_makeshlibs
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install configure

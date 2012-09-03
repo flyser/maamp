@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=0.0.2
+Type=Application
+Name=MaAmp
+Comment=Maemo Ampache player (early version)\n\nThis is a little mediaplayer for those with an Ampache server\n\nIt is mainly a little project for learning some Python,Qt and more.. :)  
+Exec=run-standalone.sh python /opt/MaAmp/maamp.py
+Icon=maamp
+X-HildonDesk-ShowInToolbar=true
+X-Osso-Type=application/x-executable
+

@@ -1,0 +1,15 @@
+# Editors
+*~
+*.bak
+*.kate-swp
+*.swp
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+
+# Translation:
+*.h
+*.mo
+*.pot

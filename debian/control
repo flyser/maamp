@@ -1,0 +1,12 @@
+Source: maamp
+Section: user/multimedia
+Priority: extra
+Maintainer: Niels Simonsen <nesnomis@gmail.com>
+Build-Depends: debhelper (>= 5)
+Standards-Version: 3.7.2
+
+Package: maamp
+Architecture: all
+Depends: python2.5,python-dbus,python2.5-qt4-maemo5,python2.5-qt4-network,python2.5-qt4-phonon,python2.5-qt4-gui
+Description: Maemo Ampache player, early test-version. But functional (i hope). This is a little mediaplayer for those with an Ampache server
+XSBC-Bugtracker: http://bugs.maemo.org
