@@ -63,7 +63,7 @@ class ampache():
 		}
 		data = urllib.urlencode(values)
 		try:
-			response = urllib2.urlopen(self.xml_rpc, data)
+			response = urllib2.urlopen(self.xml_rpc + "?" + data)
 			dom = xml.dom.minidom.parseString(response.read())
 			self.auth = dom.getElementsByTagName("auth")[0].childNodes[0].data
 			self.artists_num = int(dom.getElementsByTagName("artists")[0].childNodes[0].data)
@@ -119,7 +119,7 @@ class ampache():
 		}
 		data = urllib.urlencode(values)
 		try: 
-			response = urllib2.urlopen(self.xml_rpc, data)
+			response = urllib2.urlopen(self.xml_rpc + "?" + data)
 			dom = xml.dom.minidom.parseString(response.read())
 		except: # The data pulled from Ampache was invalid
 			try:
@@ -176,7 +176,7 @@ class ampache():
 			}
 			data = urllib.urlencode(values)
 			try:
-				response = urllib2.urlopen(self.xml_rpc, data)
+				response = urllib2.urlopen(self.xml_rpc + "?" + data)
 				dom = xml.dom.minidom.parseString(response.read())
 			except: # The data pulled from Ampache was invalid
 				try:
@@ -200,7 +200,7 @@ class ampache():
 						album_tags     = child.getElementsByTagName('tag')[0].childNodes[0].data
 					except:
 						album_tags = "No tag"
-					if not os.path.exists("~/MyDocs/.MaAMP/albums/"+str(album_id)):
+					if len(album_cover) > 3 and not os.path.exists("~/MyDocs/.MaAMP/albums/"+str(album_id)):
 						art_file = os.path.expanduser('~/MyDocs/.MaAMP/albums/' + str(album_id))
 						data = urllib2.urlopen(album_cover)
 						f = open(art_file, 'w')
@@ -227,7 +227,7 @@ class ampache():
 		}
 		data = urllib.urlencode(values)
 		try:
-			response = urllib2.urlopen(self.xml_rpc, data)
+			response = urllib2.urlopen(self.xml_rpc + "?" + data)
 			dom = xml.dom.minidom.parseString(response.read())
 		except: # The data pulled from Ampache was invalid
 			try:
@@ -267,7 +267,7 @@ class ampache():
 		}
 		data = urllib.urlencode(values)
 		try:
-			response = urllib2.urlopen(self.xml_rpc, data)
+			response = urllib2.urlopen(self.xml_rpc + "?" + data)
 			dom = xml.dom.minidom.parseString(response.read())
 		except: # The data pulled from Ampache was invalid
 			try:
